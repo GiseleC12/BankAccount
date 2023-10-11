@@ -27,7 +27,7 @@ public class MainTest {
         assertThat(result).isEqualTo(expected);
     }
     @Test
-    void canDateOfBirth(){
+    void canGetDateOfBirth(){
         // Given
         BankAccount bankAccount = new BankAccount("Gisele", "Aisaeva", LocalDate.of(1994, 6, 8), 1234567);
         //When
@@ -39,13 +39,23 @@ public class MainTest {
 
 
     @Test
-    void canAccountNumber(){
+    void canGetAccountNumber(){
         // Given
         BankAccount bankAccount = new BankAccount("Gisele", "Aisaeva", LocalDate.of(1994, 6, 8), 1234567);
         //When
         int result = bankAccount.getAccountNumber();
         //Then
         int expected =1234567;
+        assertThat(result).isEqualTo(expected);
+    }
+    @Test
+    void canGetBalance(){
+        // Given
+        BankAccount bankAccount = new BankAccount("Gisele", "Aisaeva", LocalDate.of(1994, 6, 8), 1234567);
+        //When
+        double result = bankAccount.getBalance();
+        //Then
+        double expected = 0.0;
         assertThat(result).isEqualTo(expected);
     }
 
@@ -78,5 +88,26 @@ public class MainTest {
         int AccountNumber = bankAccount.getAccountNumber();
         assertThat(AccountNumber).isEqualTo(987654321);
     }
-
+    @Test
+    void canSetBalance(){
+        BankAccount bankAccount = new BankAccount("Gisele", "Aisaeva", LocalDate.of(1994, 6, 8), 1234567);
+        bankAccount.setBalance(1.0);
+        double balance = bankAccount.getBalance();
+        assertThat(balance).isEqualTo(1.0);
+    }
+    @Test
+    void doesDepositWork(){
+        BankAccount bankAccount = new BankAccount("Gisele", "Aisaeva", LocalDate.of(1994, 6, 8), 1234567);
+        int updateBalance = bankAccount.deposit(11);
+        assertThat(updateBalance).isEqualTo(11);
+    }
+    @Test
+    void doesWithdrawWork(){
+        BankAccount bankAccount = new BankAccount("Gisele", "Aisaeva", LocalDate.of(1994, 6, 8), 1234567);
+        int bankBalance = bankAccount.getBalance();
+        bankAccount.deposit(110);
+        int withdraw = bankAccount.withdraw(10);
+        int updatedBalance = bankBalance - withdraw;
+        assertThat(updatedBalance).isEqualTo(10);
+    }
 }

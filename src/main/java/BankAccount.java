@@ -7,12 +7,14 @@ public class BankAccount {
     private int accountNumber;
     private double balance;
 
-    public BankAccount(String firstName, String lastName, LocalDate dateOfBirth,  int accountNumber){
+    public BankAccount(String firstName, String lastName, LocalDate dateOfBirth,  int accountNumber, int deposit, int withdrawal){
         this.firstName = firstName;
         this.lastName = lastName;
         this.dateOfBirth = dateOfBirth;
         this.accountNumber = accountNumber;
         this.balance = 0.0; // Initial balance is 0
+        this.deposit()= deposit;
+        this.withdraw() = withdrawal;
     }
 
     // Getter methods;
@@ -48,11 +50,11 @@ public class BankAccount {
     public void setBalance(double balance){
         this.balance = balance;
     }
-//Deposit method
-//    public void deposit(double amount){
-//        if (amount > 0) {
-//        this.balance+=amount;
-//            System.out.println("Deposited £" + amount + ".New balance: £" + balance);
-//    }
 
+    public double deposit(double amount){
+        return this.balance + amount;
+    }
+    public double withdraw(double amount){
+        return this.balance - amount;
+    }
 }
